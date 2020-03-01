@@ -1,0 +1,28 @@
+{
+  "name": "spotify-playing",
+  "version": "1.0.0",
+  "description": "Returns the current song playing on Spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mic-max/spotify-playing.git"
+  },
+  "keywords": [
+    "spotify",
+    "playing",
+    "song",
+    "artist"
+  ],
+  "author": "Michael Maxwell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mic-max/spotify-playing/issues"
+  },
+  "homepage": "https://github.com/mic-max/spotify-playing#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}

@@ -9,7 +9,10 @@ function isPlaying(windowTitle) {
         return null
 
     let splitted = windowTitle.split(SEP)
-    // TODO check that splitted.length is 2
+
+    // TODO give better error message for windows with more than a single hyphen
+    if (splitted.length != 2)
+        return null
 
     return {
         artist: splitted[0],
@@ -19,9 +22,11 @@ function isPlaying(windowTitle) {
 
 function playing(cb) {
     if (!checkSong)
-        cb('Platform not supported.')
+        return cb('Platform not supported.')
 
     checkSong((err, windowTitle) => {
+        if (err)
+            return cb(err)
         cb(null, isPlaying(windowTitle))
     })
 }

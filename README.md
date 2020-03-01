@@ -15,3 +15,4 @@ Works on Windows, Mac, Linux with the desktop spotify client.
 - Work on Mac
 - Test on linux
 - Test on Mac
+- Remove example.js from npm package

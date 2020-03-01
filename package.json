@@ -16,6 +16,12 @@
     "song",
     "artist"
   ],
+  "files": [
+    "platforms/darwin.js",
+    "platforms/linux.js",
+    "platforms/win32.js",
+    "index.js"
+  ],
   "author": "Michael Maxwell",
   "license": "ISC",
   "bugs": {

@@ -1,33 +1,28 @@
 'use strict'
 
-const checkSong = require(`./platforms/${require('os').platform()}`)
+const platform = require('os').platform()
 
 function isPlaying(windowTitle) {
-    const SEP = ' - '
-
     if (['Spotify Premium', 'Spotify Free', 'Spotify'].includes(windowTitle))
         return null
 
-    let splitted = windowTitle.split(SEP)
-
-    // TODO give better error message for windows with more than a single hyphen
-    if (splitted.length != 2)
-        return null
-
+    const FIRST_SEP = windowTitle.indexOf(' - ')
     return {
-        artist: splitted[0],
-        song: splitted[1]
+        artist: windowTitle.substr(0, FIRST_SEP),
+        song: windowTitle.substr(FIRST_SEP + 3)
     }
 }
 
 function playing(cb) {
-    if (!checkSong)
-        return cb('Platform not supported.')
-
-    checkSong((err, windowTitle) => {
+    if (!['win32', 'linux', 'darwin'].includes(platform))
+        return cb('Platform not supported')
+    
+    require(`./platforms/${platform}`)((err, windowTitle) => {
         if (err)
-            return cb(err)
-        cb(null, isPlaying(windowTitle))
+            return cb('Cannot find Spotify process')
+
+        let song = isPlaying(windowTitle)
+        cb(song ? null : 'Nothing playing on Spotify', song)
     })
 }
 

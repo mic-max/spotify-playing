@@ -1,7 +1,5 @@
 'use strict'
 
-const platform = require('os').platform()
-
 function isPlaying(windowTitle) {
     if (['Spotify Premium', 'Spotify Free', 'Spotify'].includes(windowTitle))
         return null
@@ -14,10 +12,10 @@ function isPlaying(windowTitle) {
 }
 
 function playing(cb) {
-    if (!['win32', 'linux', 'darwin'].includes(platform))
+    if (!['win32', 'linux', 'darwin'].includes(process.platform))
         return cb('Platform not supported')
-    
-    require(`./platforms/${platform}`)((err, windowTitle) => {
+
+    require(`./platforms/${process.platform}`)((err, windowTitle) => {
         if (err)
             return cb('Cannot find Spotify process')
 

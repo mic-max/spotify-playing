@@ -3,7 +3,7 @@
 const platforms = {
     'darwin': require('./platforms/darwin'),
     'linux': require('./platforms/linux'),
-    'win3': require('./platforms/win32'),
+    'win32': require('./platforms/win32'),
 }
 
 module.exports = cb => {

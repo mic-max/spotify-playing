@@ -1,11 +1,8 @@
 {
   "name": "spotify-playing",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Returns the current song playing on Spotify",
   "main": "index.js",
-  "scripts": {
-    "test": "ava"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mic-max/spotify-playing.git"
@@ -29,8 +26,5 @@
   "bugs": {
     "url": "https://github.com/mic-max/spotify-playing/issues"
   },
-  "homepage": "https://github.com/mic-max/spotify-playing#readme",
-  "devDependencies": {
-    "ava": "^3.5.0"
-  }
+  "homepage": "https://github.com/mic-max/spotify-playing#readme"
 }

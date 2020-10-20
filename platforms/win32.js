@@ -2,13 +2,9 @@
 
 const child_proc = require('child_process')
 
-function windows(cb) {
+module.exports = cb => {
 	const cmd = 'powershell -command "ps Spotify | ft MainWindowTitle -HideTableHeaders"'
 	child_proc.exec(cmd, (err, stdout) => {
-		if (err)
-			return cb(err)
-        return cb(null, stdout.trim())
+        cb(err, err || stdout.trim())
 	})
 }
-
-module.exports = windows

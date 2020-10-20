@@ -1,27 +1,28 @@
 'use strict'
 
-function isPlaying(windowTitle) {
-    if (['Spotify Premium', 'Spotify Free', 'Spotify'].includes(windowTitle))
-        return null
-
-    const FIRST_SEP = windowTitle.indexOf(' - ')
-    return {
-        artist: windowTitle.substr(0, FIRST_SEP),
-        song: windowTitle.substr(FIRST_SEP + 3)
-    }
+const platforms = {
+    'darwin': require('./platforms/darwin'),
+    'linux': require('./platforms/linux'),
+    'win3': require('./platforms/win32'),
 }
 
-function playing(cb) {
-    if (!['win32', 'linux', 'darwin'].includes(process.platform))
+module.exports = cb => {
+    if (!platforms.hasOwnProperty(process.platform))
         return cb('Platform not supported')
 
-    require(`./platforms/${process.platform}`)((err, windowTitle) => {
+    platforms[process.platform]((err, windowTitle) => {
         if (err)
             return cb('Cannot find Spotify process')
 
-        let song = isPlaying(windowTitle)
-        cb(song ? null : 'Nothing playing on Spotify', song)
+        if (['', 'Spotify Premium', 'Spotify Free', 'Spotify'].includes(windowTitle))
+            return cb('Nothing playing on Spotify')
+
+        const FIRST_SEP = windowTitle.indexOf(' - ')
+        const music = {
+            artist: windowTitle.substr(0, FIRST_SEP),
+            song: windowTitle.substr(FIRST_SEP + 3)
+        }
+
+        cb(null, music)
     })
 }
-
-module.exports = playing

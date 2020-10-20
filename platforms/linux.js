@@ -25,7 +25,7 @@ function isPIDSpotify(pid) {
 	})
 }
 
-function linux(cb) {
+module.exports = cb => {
 	child_proc.exec(cmd1, (err, stdout) => {
 		if (err)
 			return cb(err)
@@ -43,5 +43,3 @@ function linux(cb) {
 		return cb(null, title)
 	})
 }
-
-module.exports = linux

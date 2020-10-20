@@ -1,7 +1,5 @@
 'use strict'
 
-function mac(cb) {
-	cb(null, {artist: 'bryson tiller', song: 'dont'})
+module.exports = cb => {
+	cb('Mac not yet supported')
 }
-
-module.exports = mac
